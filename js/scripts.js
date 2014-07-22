@@ -58,55 +58,55 @@ var onAuthorize = function() {
         org: JSON.parse(localStorage['trelloCalendar'])
     });
 
-    // Trello.get("organizations/ycp", {
-    //     fields: 'displayName,url',
-    //     boards: 'open', board_fields: 'name,desc,shortUrl',
-    //     members: 'all', member_fields: 'username,fullName'
-    // }, function(org) {
-    //     var boards = org.boards;
-    //     var boards_new = {};
-    //     delete org.boards;
+    Trello.get("organizations/ycp", {
+        fields: 'displayName,url',
+        boards: 'open', board_fields: 'name,desc,shortUrl',
+        members: 'all', member_fields: 'username,fullName'
+    }, function(org) {
+        var boards = org.boards;
+        var boards_new = {};
+        delete org.boards;
 
-    //     org.boards = {};
+        org.boards = {};
 
-    //     for (var i = 0; i < boards.length; i++) {
-    //         boards_new[boards[i].id] = boards[i];
-    //         delete boards_new[boards[i].id].id;
-    //     }
+        for (var i = 0; i < boards.length; i++) {
+            boards_new[boards[i].id] = boards[i];
+            delete boards_new[boards[i].id].id;
+        }
 
-    //     org.boards = boards_new;
+        org.boards = boards_new;
 
-    //     trelloCards.set({
-    //         org: org
-    //     });
+        trelloCards.set({
+            org: org
+        });
 
-    //     console.log(trelloCards.data.org);
+        console.log(trelloCards.data.org);
 
-    //     // Loop through org members and add cards
-    //     $.each(org.members, function(ix, member) {
-    //         member.cards = new Array();
-    //         Trello.get("members/" + member.id + "/cards", {
-    //                 fields: "name,url,due,desc,idBoard"
-    //         }, function(cards) {
+        // Loop through org members and add cards
+        $.each(org.members, function(ix, member) {
+            member.cards = new Array();
+            Trello.get("members/" + member.id + "/cards", {
+                    fields: "name,url,due,desc,idBoard"
+            }, function(cards) {
 
-    //             // Remove cards without due date
-    //             for (var i = cards.length - 1; i >= 0; i--) {
-    //                 if (cards[i].due === null)
-    //                     cards.splice(i, 1);
-    //                 else
-    //                     cards[i].due = new Date(cards[i].due);
-    //             }
+                // Remove cards without due date
+                for (var i = cards.length - 1; i >= 0; i--) {
+                    if (cards[i].due === null)
+                        cards.splice(i, 1);
+                    else
+                        cards[i].due = new Date(cards[i].due);
+                }
 
-    //             member.cards = cards;
-    //             trelloCards.set({
-    //                 org: org
-    //             });
+                member.cards = cards;
+                trelloCards.set({
+                    org: org
+                });
 
-    //         });
-    //     });
+            });
+        });
 
-    //     trelloCards.update();
-    // });
+        trelloCards.update();
+    });
 };
 
 var updateLoggedIn = function() {
