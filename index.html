@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="vendor/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="build/css/styles.min.css">
+</head> <!-- End Head -->
+
+<body>
+	<div class="loggedout">
+        <a id="connectLink" href="#">Connect To Trello</a>
+    </div>
+
+    <div class="loggedin">
+        <div id="header">
+            <h3>Logged in to as <span id="fullName"></span></h3>
+            <a id="disconnect" href="#">Log Out</a>
+        </div>
+
+        <div id='container'></div>
+    </div>
+
+<!--     <table class="time-table">
+    	<caption>July 2014</caption>
+    	<thead>
+    		<tr>
+    			<td class="blank"></td>
+    			<td colspan="5">Week 29</td>
+    			<td colspan="5">Week 30</td>
+    		</tr>
+    		<tr>
+    			<td class="blank"></td>
+    			<td>14-Jul</td>
+    			<td>15-Jul</td>
+    			<td>16-Jul</td>
+    			<td>17-Jul</td>
+    			<td>18-Jul</td>
+    			<td>21-Jul</td>
+    			<td>22-Jul</td>
+    			<td>23-Jul</td>
+    			<td>24-Jul</td>
+    			<td>25-Jul</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td rowspan="2">Andy</td>
+    			<td colspan="3">MRT100</td>
+    			<td>GO Live</td>
+    			<td>GCMA</td>
+    			<td colspan="2">MRT100</td>
+    			<td>HDS100</td>
+    			<td colspan="2">AEN100</td>
+    		</tr>
+    		<tr>
+    			<td colspan="1">TCM101</td>
+    			<td colspan="3" class="empty"></td>
+    			<td>MRT100</td>
+    			<td colspan="2">TCM101</td>
+    			<td colspan="4" class="empty"></td>
+    		</tr>
+    	</tbody>
+
+    </table> -->
+
+
+	<script id='template' type='text/ractive'>
+		<h1>{{org.displayName}}</h1>
+
+		{{#org.members:mi}}
+			<h3>{{fullName}}</h3>
+			{{>cards}}
+		{{/org.members}}
+
+		<!-- {{>cards}} -->
+			{{#cards:ci}}
+				<a href="{{url}}" target="trello" class="card">
+			    	<span class="card-name">{{name}}</span>
+			    	<span class="board-name">{{getBoard(idBoard)}}</span>
+			    	<span class="date">{{due.toDateString()}}</span>
+				</a>
+			{{/cards}}
+		<!-- {{/cards}} -->
+	</script>
+
+	<script type="text/javascript" src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script type="text/javascript" src='https://api.trello.com/1/client.js?key=581a39a3370393a0d574e0f2439a58f6'></script>
+   	<script src="vendor/js/jquery.velocity.js"></script>
+	<script src="vendor/js/velocity.ui.js"></script>
+    <script type="text/javascript" src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+	<script type="text/javascript" src="build/js/scripts.min.js"></script>
+
+</body> <!-- End Body -->
+
+</html>
