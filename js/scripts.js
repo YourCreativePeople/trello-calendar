@@ -118,6 +118,7 @@ function addToColumn(row, card){
 		var isSameAsEnd = row.Columns[i].StartDate.isSame(card.EndDate, "day");
 		if(isSameAsStart){
 			columnToUse = row.Columns[i];
+			columnToUse.Url = card.url;
 			columnToUse.BoardID = card.idBoard;
 			columnToUse.Span = 1;
 			if(isSameAsEnd)

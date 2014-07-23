@@ -68,7 +68,8 @@ var trelloCards = new Ractive({
                     
                     s += "<td class=\"" + bClass + "\" style=\"background: " + bgColor + ";\" colspan=\"" + column.Span.toString() + "\">";
                     //s += "<td colspan=\"" + column.Span.toString() + "\">";
-                    s += t;
+                    if(t !== '')
+	                    s += "<a target=\"_blank\" href=\"" + column.Url + "\">" + t + "</a>";
 
                     s += "</td>";
                 
