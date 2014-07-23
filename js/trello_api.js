@@ -43,7 +43,6 @@ Trello.get("organizations/ycp", {
     $.each(org.members, function(ix, member) {
         member.cards = new Array();
         Trello.get("members/" + member.id + "/cards", {
-
                 fields: "name,url,due,desc,idBoard"
         }, function(cards) {
 
@@ -81,6 +80,7 @@ var updateLoggedIn = function() {
     Trello.members.get("me", function(member){
         console.log(member);
         $("#fullName").text(member.fullName);
+        $('#avatar').attr('src', 'https://trello-avatars.s3.amazonaws.com/' + member.avatarHash + '/50.png');
     });
 
     var isLoggedIn = Trello.authorized();
