@@ -352,7 +352,6 @@ function processMemberCards(member){
 					try{
 						var dNum = parseInt(d.substring(0, dInd));
 						card.StartDate = addWeekdays(card.EndDate, -(dNum - 1));
-						console.log(dNum);	
 					}catch(e){}
 				}
 			}
