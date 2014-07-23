@@ -26,6 +26,9 @@ var trelloCards = new Ractive({
             else
                 return "Board in another org";
 
+        },
+        formatDate: function(d){
+	        return d.format("DD - MMM");
         }
     }
 });
@@ -54,11 +57,14 @@ trelloCards.observe( 'org.boards', function( items ) {
 var onAuthorize = function() {
     updateLoggedIn();
 
-    trelloCards.set({
+/*
+trelloCards.set({
         org: JSON.parse(localStorage['trelloCalendar'])
     });
+    console.log(trelloCards.data.org);
+*/
 
-    Trello.get("organizations/ycp", {
+Trello.get("organizations/ycp", {
         fields: 'displayName,url',
         boards: 'open', board_fields: 'name,desc,shortUrl',
         members: 'all', member_fields: 'username,fullName'
@@ -76,11 +82,10 @@ var onAuthorize = function() {
 
         org.boards = boards_new;
 
-        trelloCards.set({
-            org: org
-        });
+        
+        
+        getWeeks();
 
-        console.log(trelloCards.data.org);
 
         // Loop through org members and add cards
         $.each(org.members, function(ix, member) {
@@ -98,6 +103,10 @@ var onAuthorize = function() {
                 }
 
                 member.cards = cards;
+                
+                processMemberCards(member, cards);
+                
+                
                 trelloCards.set({
                     org: org
                 });
@@ -107,6 +116,7 @@ var onAuthorize = function() {
 
         trelloCards.update();
     });
+
 };
 
 var updateLoggedIn = function() {
@@ -136,5 +146,46 @@ $("#connectLink").click(function(){
         success: onAuthorize
     })
 });
+
+Date.prototype.getWeekNumber = function(){
+    var d = new Date(+this);
+    d.setHours(0,0,0);
+    d.setDate(d.getDate()+4-(d.getDay()||7));
+    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+};
+
+function getWeeks(){
+	var today = moment();
+	var begin = moment(today).isoWeekday(1);
+
+	var curDate = begin;
+	var numWeeks = 2;
+	var weeks = new Array();
+	for(var i=0;i<numWeeks;i++){
+		var w = new Object();
+		w.WeekNumber = curDate.isoWeek();
+		var days = new Array();
+		for(var d=0;d<5;d++){
+			var day = new Object();
+			day.TheDate = curDate;
+			days.push(day);
+			w.Days = days;
+			curDate = moment(curDate).add('days', 1);
+		}
+		weeks.push(w);
+		curDate = moment(curDate).add('days', 2);
+	}
+	
+	trelloCards.set({
+            weeks: weeks
+        });
+	console.log(weeks);
+}
+
+function processMemberCards(member, cards){
+	console.log(cards);
+	var boards = new Array();
+	var rows = new Array();
+}
 
 $("#disconnect").click(logout);

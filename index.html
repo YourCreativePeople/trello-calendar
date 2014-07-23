@@ -23,52 +23,55 @@
         <div id='container'></div>
     </div>
 
-<!--     <table class="time-table">
-    	<caption>July 2014</caption>
-    	<thead>
-    		<tr>
-    			<td class="blank"></td>
-    			<td colspan="5">Week 29</td>
-    			<td colspan="5">Week 30</td>
-    		</tr>
-    		<tr>
-    			<td class="blank"></td>
-    			<td>14-Jul</td>
-    			<td>15-Jul</td>
-    			<td>16-Jul</td>
-    			<td>17-Jul</td>
-    			<td>18-Jul</td>
-    			<td>21-Jul</td>
-    			<td>22-Jul</td>
-    			<td>23-Jul</td>
-    			<td>24-Jul</td>
-    			<td>25-Jul</td>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		<tr>
-    			<td rowspan="2">Andy</td>
-    			<td colspan="3">MRT100</td>
-    			<td>GO Live</td>
-    			<td>GCMA</td>
-    			<td colspan="2">MRT100</td>
-    			<td>HDS100</td>
-    			<td colspan="2">AEN100</td>
-    		</tr>
-    		<tr>
-    			<td colspan="1">TCM101</td>
-    			<td colspan="3" class="empty"></td>
-    			<td>MRT100</td>
-    			<td colspan="2">TCM101</td>
-    			<td colspan="4" class="empty"></td>
-    		</tr>
-    	</tbody>
-
-    </table> -->
 
 
 	<script id='template' type='text/ractive'>
 		<h1>{{org.displayName}}</h1>
+		
+		<table class="time-table">
+    	<caption>July 2014</caption>
+    	<thead>
+    		<tr>
+    			<td class="blank"></td>
+    			{{#weeks}}
+	    			<td colspan="5">Week {{WeekNumber}}</td>
+				{{/weeks}}
+    		</tr>
+    		<tr>
+    			<td class="blank"></td>
+    			{{#weeks}}
+    				{{#Days}}
+    					<td>{{formatDate(TheDate)}}</td>
+    				{{/Days}}
+				{{/weeks}}
+    		</tr>
+    	</thead>
+    	<tbody>
+	    	{{#org.members:mi}}
+	    		<tr>
+	    			<td>{{fullName}}</td>
+	    			<td>
+	    				<table>
+	    					
+	    				</table>
+	    			</td>
+	    			<td>GO Live</td>
+	    			<td>GCMA</td>
+	    			<td colspan="2">MRT100</td>
+	    			<td>HDS100</td>
+	    			<td colspan="2">AEN100</td>
+	    		</tr>
+	    		<tr>
+	    			<td colspan="1">TCM101</td>
+	    			<td colspan="3" class="empty"></td>
+	    			<td>MRT100</td>
+	    			<td colspan="2">TCM101</td>
+	    			<td colspan="4" class="empty"></td>
+	    		</tr>
+	    	{{/org.members}}
+    	</tbody>
+
+    </table>
 
 		{{#org.members:mi}}
 			<h3>{{fullName}}</h3>
@@ -91,6 +94,7 @@
    	<script src="vendor/js/jquery.velocity.js"></script>
 	<script src="vendor/js/velocity.ui.js"></script>
     <script type="text/javascript" src='http://cdn.ractivejs.org/latest/ractive.js'></script>
+    <script type="text/javascript" src="vendor/js/moment.min.js"></script>
 	<script type="text/javascript" src="build/js/scripts.min.js"></script>
 
 </body> <!-- End Body -->
