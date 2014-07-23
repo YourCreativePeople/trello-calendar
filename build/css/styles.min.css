@@ -1,3 +1,40 @@
+.container {
+  position: relative;
+}
+.loggedout {
+  text-align: center;
+  font-size: 20px;
+  padding-top: 30px;
+}
+.loggedin {
+  display: none;
+}
+/* Calendar Table */
+.time-table {
+  width: 100%;
+  border: 1px solid #b3b3b3;
+  table-layout: fixed;
+}
+.time-table caption {
+  padding: 10px 0;
+  border: 1px solid #b3b3b3;
+  border-bottom: none;
+}
+.time-table thead td {
+  text-align: center;
+  border: 1px solid #b3b3b3;
+  padding: 6px 0;
+}
+.time-table thead td.blank {
+  background: #b3b3b3;
+}
+.time-table tbody td {
+  text-align: center;
+  border: 1px solid #b3b3b3;
+  padding: 6px 0;
+}
+/* Mixins */
+
 html {
   font: normal 100%/1.75 'Tisa Pro', sans-serif;
 }
@@ -212,77 +249,3 @@ ol {
     line-height: 2.5rem;
   }
 }
-.container {
-  position: relative;
-}
-.loggedout {
-  text-align: center;
-  font-size: 20px;
-  padding-top: 30px;
-}
-.loggedin {
-  display: none;
-}
-.card {
-  display: block;
-  position: relative;
-  padding: 12px;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: 5px;
-  color: rgba(0, 0, 0, 0.8);
-  font-size: 14px;
-  text-decoration: none;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-transition: background-color 200ms;
-  -moz-transition: background-color 200ms;
-  transition: background-color 200ms;
-}
-.card .list-name {
-  float: right;
-  margin-top: -6px;
-  font-size: 12px;
-}
-.card .card-name {
-  display: block;
-  font-size: 15px;
-  font-weight: 500;
-}
-.card .board-name {
-  font-size: 12px;
-}
-.card .date {
-  display: block;
-  position: absolute;
-  right: 10px;
-  top: 35%;
-}
-.card:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* Calendar Table */
-.time-table {
-  width: 100%;
-  border: 1px solid #b3b3b3;
-}
-.time-table caption {
-  padding: 10px 0;
-  border: 1px solid #b3b3b3;
-  border-bottom: none;
-}
-.time-table thead td {
-  text-align: center;
-  border: 1px solid #b3b3b3;
-  padding: 6px 0;
-}
-.time-table thead td.blank {
-  background: #b3b3b3;
-}
-.time-table tbody td {
-  text-align: center;
-  border: 1px solid #b3b3b3;
-  padding: 6px 0;
-}
-/* Mixins */

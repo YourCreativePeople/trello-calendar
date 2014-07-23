@@ -9,14 +9,17 @@ var gulp        = require('gulp'),
     watch       = require('gulp-watch'),
     less        = require('gulp-less'),
     minifyCSS   = require('gulp-minify-css'),
-    filesize    = require('gulp-filesize');
+    filesize    = require('gulp-filesize'),
+    lr          = require('tiny-lr');
 
-var EXPRESS_PORT = 4005;
-var EXPRESS_ROOT = __dirname;
+var EXPRESS_PORT    = 4001;
+var EXPRESS_ROOT    = __dirname;
+var LIVERELOAD_PORT = 35730;
 
 var paths = {
-  scripts:  ['js/*.js'],
-  styles:   ['css/*.less']
+  scripts:          ['js/*.js'],
+  vendorscripts:    ['vendor/js/*.js'],
+  styles:           ['css/*.less']
 };
 
 gulp.task('server', function () {
@@ -29,13 +32,24 @@ gulp.task('server', function () {
     gutil.log('Express Server on Port ' + gutil.colors.bgBlue.white(' ' + EXPRESS_PORT + ' '));
 });
 
+gulp.task('livereload', function() {
+    lr().listen(LIVERELOAD_PORT);
+});
+
 gulp.task('js', function () {
     return gulp.src(paths.scripts)
-        .pipe(filesize())
         //.pipe(uglify())
         .pipe(concat('scripts.min.js'))
         .pipe(gulp.dest('build/js'))
-        // .pipe(filesize())
+        .on('error', gutil.log)
+        .pipe(livereload());
+});
+
+gulp.task('vendorjs', function() {
+    return gulp.src(paths.vendorscripts)
+        .pipe(uglify())
+        .pipe(concat('vendorscripts.min.js'))
+        .pipe(gulp.dest('build/js'))
         .on('error', gutil.log)
         .pipe(livereload());
 });
@@ -43,7 +57,6 @@ gulp.task('js', function () {
 gulp.task('less', function () {
     return gulp.src(paths.styles)
         .pipe(less())
-        .pipe(filesize())
         // .pipe(minifyCSS())
         .pipe(concat('styles.min.css'))
         .pipe(gulp.dest('build/css'))
@@ -54,8 +67,16 @@ gulp.task('less', function () {
 gulp.task('watch', function () {
     gulp.watch(paths.scripts, ['js']);
     gulp.watch(paths.styles, ['less']);
-    gulp.watch("*.html", livereload);
+    gulp.watch('*.html', notifyLivereload);
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'server', 'js', 'less']);
+gulp.task('default', ['watch', 'server', 'livereload', 'js', 'vendorjs', 'less']);
+
+// Notifies livereload of changes detected
+// by `gulp.watch()`
+function notifyLivereload(event) {
+
+  gulp.src(event.path, {read: false})
+    .pipe(livereload());
+}

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 
-	<title></title>
+	<title>Trello Calendar</title>
 
 	<link rel="stylesheet" type="text/css" href="vendor/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="build/css/styles.min.css">
@@ -16,7 +16,7 @@
 
     <div class="loggedin">
         <div id="header">
-            <h3>Logged in to as <span id="fullName"></span></h3>
+            <h3><span id="fullName"></span></h3>
             <a id="disconnect" href="#">Log Out</a>
         </div>
 
@@ -27,7 +27,7 @@
 
 	<script id='template' type='text/ractive'>
 		<h1>{{org.displayName}}</h1>
-		
+
 		<table class="time-table">
     	<caption>July 2014</caption>
     	<thead>
@@ -52,17 +52,15 @@
 	    	{{/org.members}}
     	</tbody>
     </table>
-    
-    
+
+
 	</script>
 
 	<script type="text/javascript" src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
     <script type="text/javascript" src='https://api.trello.com/1/client.js?key=581a39a3370393a0d574e0f2439a58f6'></script>
-   	<script src="vendor/js/jquery.velocity.js"></script>
-	<script src="vendor/js/velocity.ui.js"></script>
     <script type="text/javascript" src='http://cdn.ractivejs.org/latest/ractive.js'></script>
-    <script type="text/javascript" src="vendor/js/moment.min.js"></script>
-	<script type="text/javascript" src="build/js/scripts.min.js"></script>
+    <script type="text/javascript" src='build/js/vendorscripts.min.js'></script>
+	<script type="text/javascript" src='build/js/scripts.min.js'></script>
 
 </body> <!-- End Body -->
 
