@@ -1,0 +1,70 @@
+.container {
+    position: relative;
+}
+
+.loggedout {
+    text-align: center;
+    font-size: 20px;
+    padding-top: 30px;
+}
+
+.loggedin {
+    display: none;
+}
+
+/* Calendar Table */
+.time-table {
+    width: 100%;
+    border: 1px solid rgb(179, 179, 179);
+    table-layout: fixed;
+
+    caption {
+        padding: 10px 0;
+        border: 1px solid rgb(179, 179, 179);
+        border-bottom: none;
+    }
+
+    thead td {
+        text-align: center;
+        border: 1px solid rgb(179, 179, 179);
+        padding: 6px 0;
+    }
+
+    thead td.blank {
+        background: rgb(179, 179, 179);
+    }
+
+    tbody td {
+        text-align: center;
+        border: 1px solid rgb(179, 179, 179);
+        padding: 6px 0;
+    }
+}
+
+
+/* Mixins */
+.transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition:    @transition;
+    -ms-transition:     @transition;
+    -o-transition:      @transition;
+    transition:         @transition;
+}
+
+.transition-delay (@delay) {
+    -webkit-transition-delay:   @delay;
+    -moz-transition-delay:      @delay;
+    -ms-transition-delay:       @delay;
+    -o-transition-delay:        @delay;
+    transition-delay:           @delay;
+}
+
+.transform (@transform) {
+    -webkit-transform:  @transform;
+    -moz-transform:     @transform;
+    -ms-transform:      @transform;
+    -o-transform:       @transform;
+    transform:          @transform;
+}
+
+
