@@ -41,52 +41,19 @@
     			<td class="blank"></td>
     			{{#weeks}}
     				{{#Days}}
-    					<td>{{formatDate(TheDate)}}</td>
+    					<td>{{formatDate(.)}}</td>
     				{{/Days}}
 				{{/weeks}}
     		</tr>
     	</thead>
     	<tbody>
 	    	{{#org.members:mi}}
-	    		<tr>
-	    			<td>{{fullName}}</td>
-	    			<td>
-	    				<table>
-	    					
-	    				</table>
-	    			</td>
-	    			<td>GO Live</td>
-	    			<td>GCMA</td>
-	    			<td colspan="2">MRT100</td>
-	    			<td>HDS100</td>
-	    			<td colspan="2">AEN100</td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="1">TCM101</td>
-	    			<td colspan="3" class="empty"></td>
-	    			<td>MRT100</td>
-	    			<td colspan="2">TCM101</td>
-	    			<td colspan="4" class="empty"></td>
-	    		</tr>
+	    		{{{renderRows(.)}}}
 	    	{{/org.members}}
     	</tbody>
-
     </table>
-
-		{{#org.members:mi}}
-			<h3>{{fullName}}</h3>
-			{{>cards}}
-		{{/org.members}}
-
-		<!-- {{>cards}} -->
-			{{#cards:ci}}
-				<a href="{{url}}" target="trello" class="card">
-			    	<span class="card-name">{{name}}</span>
-			    	<span class="board-name">{{getBoard(idBoard)}}</span>
-			    	<span class="date">{{due.toDateString()}}</span>
-				</a>
-			{{/cards}}
-		<!-- {{/cards}} -->
+    
+    
 	</script>
 
 	<script type="text/javascript" src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>

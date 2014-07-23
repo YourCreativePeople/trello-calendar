@@ -32,7 +32,7 @@ gulp.task('server', function () {
 gulp.task('js', function () {
     return gulp.src(paths.scripts)
         .pipe(filesize())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(concat('scripts.min.js'))
         .pipe(gulp.dest('build/js'))
         // .pipe(filesize())
