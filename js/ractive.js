@@ -49,7 +49,33 @@ var trelloCards = new Ractive({
                 if(i == 0)
                     s += "<td rowspan=\"" + mem.Rows.length.toString() + "\">" + mem.fullName + "</td>";
                 for(var c=0;c<row.Columns.length;c++){
-                    var column = row.Columns[c];
+                	var column = row.Columns[c];
+                    var bgColor = "none";
+                    var bClass = "";
+                    var t = "";
+                    var bID = column.BoardID;
+                    if(bID !== ''){
+                        var b = trelloCards.data.org.boards[column.BoardID];
+                        if(b.prefs.backgroundColor !== ''){
+                        	bgColor = b.prefs.backgroundColor;
+                        	bClass = "bgColor";
+                        }
+                        if (b.name !== '')
+                            t= b.name;
+                        else
+                        	t = "Board in another org";
+                    }
+                    
+                    s += "<td class=\"" + bClass + "\" style=\"background: " + bgColor + ";\" colspan=\"" + column.Span.toString() + "\">";
+                    //s += "<td colspan=\"" + column.Span.toString() + "\">";
+                    s += t;
+
+                    s += "</td>";
+                
+                
+                
+					/*
+                    //var column = row.Columns[c];
                     s += "<td colspan=\"" + column.Span.toString() + "\">";
 
                     var bID = column.BoardID;
@@ -62,6 +88,7 @@ var trelloCards = new Ractive({
                     }
 
                     s += "</td>";
+                    */
                 }
                 s += "</tr>";
 

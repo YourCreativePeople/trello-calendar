@@ -17,7 +17,7 @@ Trello.authorize({
 */
 Trello.get("organizations/ycp", {
         fields: 'displayName,url',
-        boards: 'open', board_fields: 'name,desc,shortUrl',
+        boards: 'open', board_fields: 'name,desc,shortUrl,prefs',
         members: 'all', member_fields: 'username,fullName'
 }, function(org) {
     var boards = org.boards;
