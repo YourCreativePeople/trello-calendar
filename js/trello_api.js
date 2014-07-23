@@ -21,6 +21,7 @@ Trello.get("organizations/ycp", {
         members: 'all', member_fields: 'username,fullName'
 }, function(org) {
     var boards = org.boards;
+    console.log(boards);
     var boards_new = {};
     delete org.boards;
 
