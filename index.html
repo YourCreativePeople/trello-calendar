@@ -16,8 +16,9 @@
 
     <div class="loggedin">
         <header>
+            <h3>Trello Calendar</h3>
             <div class="userInfo">
-                <img id="avatar" src=''>
+                <a id="avatarLink"><img id="avatar" src=''></a>
                 <div class="userData">
                     <span id="fullName"></span>
                     <a id="disconnect" href="#">Log Out</a>
@@ -31,8 +32,6 @@
 
 
 	<script id='template' type='text/ractive'>
-		<h1>{{org.displayName}}</h1>
-
 		<table class="time-table">
     	<caption>July 2014</caption>
     	<thead>

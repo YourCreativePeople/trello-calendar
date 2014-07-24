@@ -11,6 +11,12 @@ header {
   padding: 10px;
   height: 55px;
 }
+header h3 {
+  float: left;
+  color: white;
+  padding-top: 6px;
+  font-size: 2rem;
+}
 header .userInfo {
   float: right;
 }
@@ -65,8 +71,18 @@ header .userInfo .userData a {
   border: 1px solid #b3b3b3;
   padding: 6px 0;
 }
+.time-table tbody td a {
+  padding: 2px;
+}
 .time-table tbody td.bgColor {
   color: white;
+  position: relative;
+}
+.time-table tbody td.bgColor a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  padding-top: 5px;
 }
 /* Mixins */
 
